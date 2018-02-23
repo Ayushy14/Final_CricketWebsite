@@ -1,0 +1,46 @@
+﻿<html>
+<head>
+    <link rel="stylesheet" href="Contact.css">
+    <script type="text/javascript">
+        function DrawCaptcha()
+        {
+            var a = Math.ceil(Math.random() * 10) + '';
+            var b = Math.ceil(Math.random() * 10) + '';
+            var c = Math.ceil(Math.random() * 10) + '';
+            var d = Math.ceil(Math.random() * 10) + '';
+            var e = Math.ceil(Math.random() * 10) + '';
+            var f = Math.ceil(Math.random() * 10) + '';
+            var g = Math.ceil(Math.random() * 10) + '';
+            var code = a + ' ' + b + ' ' + ' ' + c + ' ' + d + ' ' + e + ' ' + f + ' ' + g;
+            document.getElementById("spancaptcha").InnerHTML= code; 
+        }
+
+        // Validate the Entered input aganist the generated security code function
+        function ValidCaptcha() {
+            var str1 = removeSpaces(document.getElementById('txtCaptcha').value);
+            var str2 = removeSpaces(document.getElementById('txtInput').value);
+            if (str1 == str2) return true;
+            return false;
+
+        }
+    </script>
+</head>
+<body onload="DrawCaptcha();">
+    <section id="contact">
+        <div id="form">
+            <form action="" id="contactForm" method="post">
+                <span>Name</span>
+                <input type="text" name="name" class="name" placeholder="Enter your name" tabindex=1 />
+                <span>Email</span>
+                <input type="text" name="email" class="email" placeholder="Enter your email" tabindex=2 />
+                <span id="spancaptcha"></span>
+                <input type="text" name="captcha" class="captcha" id="txtcaptcha" maxlength="4" size="4" placeholder="Enter captcha code" tabindex=3 />
+                <span>Message</span>
+                <textarea class="message" placeholder="Enter your message" tabindex=4></textarea>
+                <input type="button" id="btnrefresh" value="Refresh" class="submit" onclick="DrawCaptcha();" /><br />
+                <input type="submit" name="submit" value="Send e-mail" class="submit" tabindex=5 onclick="alert(ValidCaptcha())" ;>
+            </form>
+        </div>
+    </section>
+</body>
+</html>
